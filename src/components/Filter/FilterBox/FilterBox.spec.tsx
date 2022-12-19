@@ -12,19 +12,18 @@ const FilterBox = ({ filter }: FilterBoxProps) => {
   const [isFilterOptionsOpen, setIsFilterOptionsOpen] = useState(false);
 
   return (
-    <div>
+    <div onClick={() => setIsFilterOptionsOpen(!isFilterOptionsOpen)} data-testid='component'>
       <span>{filter.title}</span>
       {isFilterOptionsOpen ? (
         <div
           data-testid="arrow-to-close-options"
-          onClick={() => setIsFilterOptionsOpen(false)}
+          
         >
           arrow up
         </div>
       ) : (
         <div
           data-testid="arrow-to-open-options"
-          onClick={() => setIsFilterOptionsOpen(true)}
         >
           arrow down
         </div>
@@ -58,7 +57,7 @@ describe("Filter Box Component", () => {
       <FilterBox filter={mockFilterBoxProps} />
     );
 
-    await userEvent.click(getByTestId("arrow-to-open-options"));
+    await userEvent.click(getByTestId('component'));
 
     expect(getByTestId("arrow-to-close-options")).toBeInTheDocument();
     expect(queryByTestId("arrow-to-open-options")).toBeFalsy();
@@ -71,8 +70,7 @@ describe("Filter Box Component", () => {
       <FilterBox filter={mockFilterBoxProps} />
     );
 
-    await userEvent.click(getByTestId("arrow-to-open-options"));
-    await userEvent.click(getByTestId("arrow-to-close-options"));
+    await userEvent.dblClick(getByTestId('component'));
 
     expect(getByTestId("arrow-to-open-options")).toBeInTheDocument();
     expect(queryByTestId("arrow-to-close-options")).toBeFalsy();
