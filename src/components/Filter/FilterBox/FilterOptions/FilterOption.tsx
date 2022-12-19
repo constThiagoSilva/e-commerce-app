@@ -1,4 +1,6 @@
 import { HTMLAttributes, useState } from "react";
+import { handleCheckFilter } from "./handlers/handleCheckFilter";
+import { setFilterTitle } from "./utils/setFilterTitle";
 
 interface FilterOptionProps extends HTMLAttributes<HTMLDivElement> {
   filterTitle: string;
@@ -12,16 +14,16 @@ export const FilterOption = ({
 }: FilterOptionProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleCheckFilter = (filterTitle: string) => {
-    setIsChecked(!isChecked);
+  const handleClick = () => {
+    setIsChecked(handleCheckFilter(isChecked))
 
     if (isChecked) {
-      getFilterTitle?.(filterTitle);
+      getFilterTitle?.(setFilterTitle(filterTitle))
     }
-  };
+  }
 
   return (
-    <div {...rest} onClick={() => handleCheckFilter(filterTitle)}>
+    <div {...rest} onClick={() => handleClick()}>
       <div data-testid="checkbox-element">
         {isChecked ? <span data-testid="check">X</span> : <></>}
       </div>
