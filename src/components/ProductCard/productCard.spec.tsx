@@ -15,6 +15,13 @@ interface ProductCardProps {
   product: Product;
 }
 
+const formatPriceToBRL = (price: number): string => {
+  return new Intl.NumberFormat("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price);
+};
+
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div>
@@ -24,20 +31,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
       {product.inPromotion ? (
         <>
           <div>
-            <div data-testid='promotion-price'>
-              {new Intl.NumberFormat("pt-br", {
-                style: "currency",
-                currency: "BRL",
-              }).format(
+            <div data-testid="promotion-price">
+              {formatPriceToBRL(
                 product.price -
                   (product.price * product.inPromotion.discountInPercent) / 100
               )}
             </div>
             <div data-testid="normal-product-price">
-              {new Intl.NumberFormat("pt-br", {
-                style: "currency",
-                currency: "BRL",
-              }).format(product.price)}
+              {formatPriceToBRL(product.price)}
             </div>
           </div>
           <span>{product.inPromotion?.discountInPercent}% off</span>
@@ -134,7 +135,9 @@ describe("Product Card Component", () => {
     expect(queryByText(/20% off/i)).toBeFalsy();
   });
   it("not should have a promotion price if product has not in promotion", () => {
-    const { queryByTestId} = render(<ProductCard product={makeMockProduct()} />);
+    const { queryByTestId } = render(
+      <ProductCard product={makeMockProduct()} />
+    );
 
     expect(queryByTestId(/promotion-price/i)).toBeFalsy();
   });
