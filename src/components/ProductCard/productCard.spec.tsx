@@ -22,6 +22,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div>
       <img src={product.image_url} alt="any_alt" data-testid="product-image" />
       <h1>{product.title}</h1>
+      <h3>{product.category}</h3>
     </div>
   );
 };
@@ -34,7 +35,7 @@ const makeMockProduct = (otherMockProduct?: Product): Product => {
   return {
     title: "any_title",
     price: 100,
-    category: "sport",
+    category: "any_category",
     image_url: "any_url",
     inPromotion: false,
   };
@@ -51,5 +52,10 @@ describe("Product Card Component", () => {
     const { getByText } = render(<ProductCard product={makeMockProduct()} />);
 
     expect(getByText("any_title")).toBeInTheDocument();
+  })
+  it('should have an product category title', () => {
+    const { getByText } = render(<ProductCard product={makeMockProduct()} />);
+
+    expect(getByText("any_category")).toBeInTheDocument();
   })
 });
