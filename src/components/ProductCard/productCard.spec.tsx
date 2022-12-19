@@ -24,7 +24,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       {product.inPromotion ? (
         <>
           <div>
-            <div>
+            <div data-testid='promotion-price'>
               {new Intl.NumberFormat("pt-br", {
                 style: "currency",
                 currency: "BRL",
@@ -132,5 +132,10 @@ describe("Product Card Component", () => {
     const { queryByText } = render(<ProductCard product={makeMockProduct()} />);
 
     expect(queryByText(/20% off/i)).toBeFalsy();
+  });
+  it("not should have a promotion price if product has not in promotion", () => {
+    const { queryByTestId} = render(<ProductCard product={makeMockProduct()} />);
+
+    expect(queryByTestId(/promotion-price/i)).toBeFalsy();
   });
 });
