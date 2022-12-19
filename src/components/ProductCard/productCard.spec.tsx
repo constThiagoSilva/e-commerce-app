@@ -1,16 +1,38 @@
 import {render} from '@testing-library/react'
 
-const ProductCard = () => {
+type Product = {
+    title: string;
+    category: string;
+    price: number;
+    inPromotion: {
+        discountInPercent: number
+        price: number
+    } | false;
+    image_url: string;
+}
+
+interface ProductCardProps {
+    product: Product
+}
+
+const ProductCard = ({product}: ProductCardProps) => {
     return (
         <div>
-            <img src="" alt="any_alt" data-testid='product-image'/>
+            <img src={product.image_url} alt="any_alt" data-testid='product-image'/>
         </div>
     )
 }
 
 describe('Product Card Component', () => {
     it('should have a image of product', () => {
-        const {getByTestId} = render(<ProductCard/>)
+        const mockProduct: Product = {
+            title: 'any_title',
+            price: 100,
+            category: 'sport',
+            image_url: 'any_url',
+            inPromotion: false
+        }
+        const {getByTestId} = render(<ProductCard product={mockProduct}/>)
 
         expect(getByTestId('product-image')).toBeInTheDocument()
         expect(getByTestId('product-image')).toHaveProperty('alt', 'any_alt')
