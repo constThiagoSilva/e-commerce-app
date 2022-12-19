@@ -1,4 +1,4 @@
-import { queryByTestId, render } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import userEvent from '@testing-library/user-event'
 import { FilterOption } from "./FilterOption"
 
@@ -7,7 +7,7 @@ describe('Filter Option Component', () => {
         const mockFilterOptionProps = {
             filterTitle: 'any_title'
         }
-        const {getByText} = render(<FilterOption filterTitle={mockFilterOptionProps.filterTitle}/>)
+        const {getByText} = render(<FilterOption filterTitle={mockFilterOptionProps.filterTitle} />)
 
         expect(getByText('any_title')).toBeInTheDocument()
     })
@@ -38,5 +38,16 @@ describe('Filter Option Component', () => {
         await userEvent.dblClick(getByTestId('checkbox-element'))
 
         expect(queryByTestId('check')).toBeFalsy()
+    })
+    it('should return a filterTitle when is click', async () => {
+        const mockFilterOptionProps = {
+            filterTitle: 'any_title'
+        }
+        const mockGetFilterTitle = jest.fn()
+        const {getByTestId} = render(<FilterOption filterTitle={mockFilterOptionProps.filterTitle} getFilterTitle={mockGetFilterTitle()}/>)
+
+        await userEvent.click(getByTestId('checkbox-element'))
+
+        expect(mockGetFilterTitle).toHaveBeenCalled()
     })
 })
