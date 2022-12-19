@@ -7,6 +7,8 @@ interface FilterOptionProps extends HTMLAttributes<HTMLDivElement> {
 export const FilterOption = ({ filterTitle, ...rest }: FilterOptionProps) => {
   return <div {...rest}>
 
+    <div data-testid='checkbox-element'></div>
     <span>{filterTitle}</span>
+
   </div>;
 };
