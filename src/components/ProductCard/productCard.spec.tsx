@@ -88,4 +88,9 @@ describe("Product Card Component", () => {
 
     expect(getByText(/20% off/i)).toBeInTheDocument();
   });
+  it("not should have a section have the percent of discount if product has not in promotion", () => {
+    const { queryByText } = render(<ProductCard product={makeMockProduct()} />);
+
+    expect(queryByText(/20% off/i)).toBeFalsy();
+  });
 });
