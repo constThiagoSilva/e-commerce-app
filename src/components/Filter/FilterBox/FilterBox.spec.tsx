@@ -10,6 +10,9 @@ const FilterBox = ({filter}: FilterBoxProps) => {
     return (
         <div>
             <span>{filter.title}</span>
+            <div data-testid='arrow-to-open-options'>
+                arrow down
+            </div>
         </div>
     )
 }
@@ -22,5 +25,13 @@ describe('Filter Box Component', () => {
         const {getByText} = render(<FilterBox filter={mockFilterBoxProps}/>)
 
         expect(getByText('any_title')).toBeInTheDocument()
+    })
+    it('should have a arrow icon to open filters options', () => {
+        const mockFilterBoxProps = {
+            title: 'any_title'
+        }
+        const {getByTestId} = render(<FilterBox filter={mockFilterBoxProps}/>)
+
+        expect(getByTestId('arrow-to-open-options')).toBeInTheDocument()
     })
 })
