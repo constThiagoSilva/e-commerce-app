@@ -1,73 +1,7 @@
 import { render } from "@testing-library/react";
-
-type Product = {
-  title: string;
-  category: string;
-  price: number;
-  inPromotion: {
-    discountInPercent: number;
-    price: number;
-  } | null;
-  image_url: string;
-};
-
-interface ProductCardProps {
-  product: Product;
-}
-
-const formatPriceToBRL = (price: number): string => {
-  return new Intl.NumberFormat("pt-br", {
-    style: "currency",
-    currency: "BRL",
-  }).format(price);
-};
-
-const ProductCard = ({ product }: ProductCardProps) => {
-  return (
-    <div>
-      <img src={product.image_url} alt="any_alt" data-testid="product-image" />
-      <h1>{product.title}</h1>
-      <h3>{product.category}</h3>
-      {product.inPromotion ? (
-        <>
-          <div>
-            <div data-testid="promotion-price">
-              {formatPriceToBRL(
-                product.price -
-                  (product.price * product.inPromotion.discountInPercent) / 100
-              )}
-            </div>
-            <div data-testid="normal-product-price">
-              {formatPriceToBRL(product.price)}
-            </div>
-          </div>
-          <span>{product.inPromotion?.discountInPercent}% off</span>
-        </>
-      ) : (
-        <span data-testid="product_price">
-          {new Intl.NumberFormat("pt-br", {
-            style: "currency",
-            currency: "BRL",
-          }).format(product.price)}
-        </span>
-      )}
-    </div>
-  );
-};
-
-const makeMockProduct = (otherMockProduct?: Product): Product => {
-  if (otherMockProduct) {
-    return otherMockProduct;
-  }
-
-  return {
-    title: "any_title",
-    price: 100,
-    category: "any_category",
-    image_url: "any_url",
-    inPromotion: null,
-  };
-};
+import { Product } from "../../interfaces/Product";
+import { makeMockProduct } from "./factories/makeMockProduct";
+import { ProductCard } from "./ProductCard";
 
 describe("Product Card Component", () => {
   describe("Elements in screen", () => {
