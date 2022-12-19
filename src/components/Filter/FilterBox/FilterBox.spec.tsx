@@ -63,4 +63,18 @@ describe("Filter Box Component", () => {
     expect(getByTestId("arrow-to-close-options")).toBeInTheDocument();
     expect(queryByTestId("arrow-to-open-options")).toBeFalsy();
   });
+  it("should have a close section filters options", async () => {
+    const mockFilterBoxProps = {
+      title: "any_title",
+    };
+    const { getByTestId, queryByTestId } = render(
+      <FilterBox filter={mockFilterBoxProps} />
+    );
+
+    await userEvent.click(getByTestId("arrow-to-open-options"));
+    await userEvent.click(getByTestId("arrow-to-close-options"));
+
+    expect(getByTestId("arrow-to-open-options")).toBeInTheDocument();
+    expect(queryByTestId("arrow-to-close-options")).toBeFalsy();
+  });
 });
