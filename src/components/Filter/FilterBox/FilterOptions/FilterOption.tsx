@@ -1,14 +1,18 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useState } from "react";
 
 interface FilterOptionProps extends HTMLAttributes<HTMLDivElement> {
-  filterTitle: string
+  filterTitle: string;
 }
 
 export const FilterOption = ({ filterTitle, ...rest }: FilterOptionProps) => {
-  return <div {...rest}>
+  const [isChecked, setIsChecked] = useState(false);
 
-    <div data-testid='checkbox-element'></div>
-    <span>{filterTitle}</span>
-
-  </div>;
+  return (
+    <div {...rest} onClick={() => setIsChecked(!isChecked)}>
+      <div data-testid="checkbox-element">
+        {isChecked ? <span data-testid="check">X</span> : <></>}
+      </div>
+      <span>{filterTitle}</span>
+    </div>
+  );
 };
