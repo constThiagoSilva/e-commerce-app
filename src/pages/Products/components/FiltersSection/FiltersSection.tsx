@@ -22,6 +22,7 @@ export const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
       <section>
         {FILTER_OPTIONS.map((option) => (
           <FilterOption
+            key={option.title}
             filterTitle={option.title}
             data-testid="filter-options-component"
           />
