@@ -19,7 +19,7 @@ describe('Filter Option Component', () => {
 
         expect(getByTestId('checkbox-element')).toBeInTheDocument()
     })
-    it('should have a checkbox', async () => {
+    it('should have a checkbox when component is click', async () => {
         const mockFilterOptionProps = {
             filterTitle: 'any_title'
         }
@@ -29,7 +29,7 @@ describe('Filter Option Component', () => {
 
         expect(getByTestId('check')).toBeInTheDocument()
     })
-    it('should have a checkbox', async () => {
+    it('not should have a checkbox when comppnent is twice clicked', async () => {
         const mockFilterOptionProps = {
             filterTitle: 'any_title'
         }
@@ -38,16 +38,5 @@ describe('Filter Option Component', () => {
         await userEvent.dblClick(getByTestId('checkbox-element'))
 
         expect(queryByTestId('check')).toBeFalsy()
-    })
-    it('should return a filterTitle when is click', async () => {
-        const mockFilterOptionProps = {
-            filterTitle: 'any_title'
-        }
-        const mockGetFilterTitle = jest.fn()
-        const {getByTestId} = render(<FilterOption filterTitle={mockFilterOptionProps.filterTitle} getFilterTitle={mockGetFilterTitle()}/>)
-
-        await userEvent.click(getByTestId('checkbox-element'))
-
-        expect(mockGetFilterTitle).toHaveBeenCalled()
     })
 })
