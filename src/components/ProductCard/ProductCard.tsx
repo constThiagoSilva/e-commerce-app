@@ -1,13 +1,14 @@
+import { HTMLAttributes } from "react";
 import { Product } from "../../interfaces/Product";
 import { formatPriceToBRL } from "../../utils/formatCurrenyToBRL";
 
-interface ProductCardProps {
+interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
     product: Product;
   }  
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, ...rest }: ProductCardProps) => {
   return (
-    <div>
+    <div {...rest}>
       <img src={product.image_url} alt="any_alt" data-testid="product-image" />
       <h1>{product.title}</h1>
       <h3>{product.category}</h3>
