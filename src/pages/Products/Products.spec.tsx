@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { Product } from "../../interfaces/Product";
+import { makeMockAxiosReturnedValue } from "./factories/mocks/makeMockedAxiosReturnValue";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -38,48 +39,10 @@ const Products = () => {
   );
 };
 
+
 describe("Products Page", () => {
   it("should have a list of product cards", async () => {
-    mockedAxios.get.mockResolvedValue({
-      data: [
-        {
-          category: "any_category",
-          image_url: "any_url",
-          inPromotion: null,
-          price: 100,
-          title: "any_title",
-        },
-        {
-          category: "any_category",
-          image_url: "any_url",
-          inPromotion: null,
-          price: 100,
-          title: "any_title",
-        },
-        {
-          category: "any_category",
-          image_url: "any_url",
-          inPromotion: null,
-          price: 100,
-          title: "any_title",
-        },
-        {
-          category: "any_category",
-          image_url: "any_url",
-          inPromotion: null,
-          price: 100,
-          title: "any_title",
-        },
-        {
-          category: "any_category",
-          image_url: "any_url",
-          inPromotion: null,
-          price: 100,
-          title: "any_title",
-        },
-      ],
-    });
-
+    makeMockAxiosReturnedValue(mockedAxios)
     const { findAllByTestId } = render(<Products />);
 
     (await findAllByTestId(/product-card-component/i)).map((element) =>
