@@ -78,6 +78,6 @@ describe("Products Page", () => {
 
     await userEvent.click(getByTestId(/open-or-close-filter/i));
 
-    expect(getByTestId(/filters-section-component/i));
+    expect(getByTestId(/filters-section-component/i)).toBeInTheDocument();
   });
 });
