@@ -1,7 +1,9 @@
+import { Products } from "./pages/Products/Products"
+
 function App() {
   return (
-    <div>
-      Hello
+    <div style={{width: '100vw', height: '100vh'}}>
+      <Products/>
     </div>
   )
 }

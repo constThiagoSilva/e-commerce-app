@@ -3,6 +3,12 @@ import axios from "axios";
 import { Product } from "../../interfaces/Product";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { FiltersSection } from "./components/FiltersSection/FiltersSection";
+import {
+  ProductPage__Container,
+  ProductPage__Header,
+  ProductPage__OpenOrCloseFiltersContainer,
+  ProductPage__OpenOrCloseFilters
+} from "./style";
 
 export const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,16 +25,19 @@ export const Products = () => {
   }, []);
 
   return (
-    <div>
-      <section>
-        <div
-          data-testid="open-or-close-filter"
-          onClick={() => setIsFiltersSectionOpen(!isFiltersSectionOpen)}
-        >
-          <span>filtros</span>
-          <span>icon</span>
-        </div>
-      </section>
+    <ProductPage__Container>
+      <ProductPage__Header>
+        <span>contador</span>
+        <ProductPage__OpenOrCloseFiltersContainer>
+          <ProductPage__OpenOrCloseFilters
+            data-testid="open-or-close-filter"
+            onClick={() => setIsFiltersSectionOpen(!isFiltersSectionOpen)}
+          >
+            <span>filtros</span>
+            <span>icon</span>
+          </ProductPage__OpenOrCloseFilters>
+        </ProductPage__OpenOrCloseFiltersContainer>
+      </ProductPage__Header>
       {products.map((product) => (
         <ProductCard
           product={{
@@ -44,6 +53,6 @@ export const Products = () => {
       {isFiltersSectionOpen && (
         <FiltersSection data-testid="filters-section-component" />
       )}
-    </div>
+    </ProductPage__Container>
   );
 };
