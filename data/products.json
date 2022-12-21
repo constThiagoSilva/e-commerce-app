@@ -1,0 +1,43 @@
+[
+  {
+    "title": "nike snicker",
+    "price": 100,
+    "category": "sport",
+    "image_url": "#",
+    "inPromotion": null
+  },
+  {
+    "title": "adidas force",
+    "price": 100,
+    "category": "sport",
+    "image_url": "#",
+    "inPromotion": {
+      "discountInPercent": 20
+    }
+  },
+  {
+    "title": "nike mizuno",
+    "price": 100,
+    "category": "casual",
+    "image_url": "#",
+    "inPromotion": {
+      "discountInPercent": 20
+    }
+  },
+  {
+    "title": "miznuno aa snicker",
+    "price": 100,
+    "category": "casual",
+    "image_url": "#",
+    "inPromotion": null
+  },
+  {
+    "title": "mizuno bbb snicker",
+    "price": 100,
+    "category": "sport",
+    "image_url": "#",
+    "inPromotion": {
+      "discountInPercent": 20
+    }
+  }
+]
