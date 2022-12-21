@@ -1,61 +1,11 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import axios from "axios";
-import { HTMLAttributes, useEffect, useState } from "react";
-import { ProductCard } from "../../components/ProductCard/ProductCard";
-import { Product } from "../../interfaces/Product";
+import { Products } from "./Products";
 import { makeMockAxiosReturnedValue } from "./factories/mocks/makeMockedAxiosReturnValue";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
-
-const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
-  return <div {...rest}>filter section</div>;
-};
-
-const Products = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isFiltersSectionOpen, setIsFiltersSectionOpen] = useState(false);
-
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      const { data } = await axios.get("../../data/products.json");
-
-      setProducts(data);
-    };
-
-    fetchAllProducts();
-  }, []);
-
-  return (
-    <div>
-      <section>
-        <div
-          data-testid="open-or-close-filter"
-          onClick={() => setIsFiltersSectionOpen(!isFiltersSectionOpen)}
-        >
-          <span>filtros</span>
-          <span>icon</span>
-        </div>
-      </section>
-      {products.map((product) => (
-        <ProductCard
-          product={{
-            category: "any",
-            image_url: "any",
-            inPromotion: null,
-            price: 100,
-            title: "any",
-          }}
-          data-testid="product-card-component"
-        />
-      ))}
-      {isFiltersSectionOpen && (
-        <FiltersSection data-testid="filters-section-component" />
-      )}
-    </div>
-  );
-};
 
 describe("Products Page", () => {
   describe("Products Section", () => {
@@ -70,7 +20,6 @@ describe("Products Page", () => {
     });
   });
 
-  
   describe("Filters Section", () => {
     it("should have a area to open or close filters with title: filter; and an icon", () => {
       const { getByTestId } = render(<Products />);
