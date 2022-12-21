@@ -23,6 +23,12 @@ const Products = () => {
 
   return (
     <div>
+        <section>
+            <div data-testid='open-or-close-filter'>
+                <span>filtros</span>
+                <span>icon</span>
+            </div>
+        </section>
       {products.map((product) => (
         <ProductCard
           product={{
@@ -50,4 +56,10 @@ describe("Products Page", () => {
     );
     expect((await findAllByTestId(/product-card-component/i)).length).toBe(5);
   });
+  it('should have a area to open or close filters with title: filter; and an icon', () => {
+    const {getByText, getByTestId} = render(<Products/>)
+
+    expect(getByTestId(/open-or-close-filter/i)).toBeInTheDocument()
+    expect(getByTestId(/open-or-close-filter/i)).toHaveTextContent(/filtros/i)
+  })
 });
