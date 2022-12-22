@@ -9,15 +9,18 @@ export const FiltersSection__Overlay = styled.div`
     right: 0;
 
     background-color: rgba(0,0,0,0.7);
-`
+
+    `
 
 export const FiltersSection__Content = styled.div`
-    width: 60%;
+width: 60%;
     height: 100%;
 
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-
+    
     background-color: #fff;
-`
+    
+    overflow: scroll;
+    `
