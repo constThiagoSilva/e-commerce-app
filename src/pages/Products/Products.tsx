@@ -7,7 +7,8 @@ import {
   ProductPage__Container,
   ProductPage__Header,
   ProductPage__OpenOrCloseFiltersContainer,
-  ProductPage__OpenOrCloseFilters
+  ProductPage__OpenOrCloseFilters,
+  ProductCard__ProductsContainer,
 } from "./style";
 
 export const Products = () => {
@@ -38,18 +39,14 @@ export const Products = () => {
           </ProductPage__OpenOrCloseFilters>
         </ProductPage__OpenOrCloseFiltersContainer>
       </ProductPage__Header>
-      {products.map((product) => (
-        <ProductCard
-          product={{
-            category: "any",
-            image_url: "any",
-            inPromotion: null,
-            price: 100,
-            title: "any",
-          }}
-          data-testid="product-card-component"
-        />
-      ))}
+      <ProductCard__ProductsContainer>
+        {products.map((product) => (
+          <ProductCard
+            product={product}
+            data-testid="product-card-component"
+          />
+        ))}
+      </ProductCard__ProductsContainer>
       {isFiltersSectionOpen && (
         <FiltersSection data-testid="filters-section-component" />
       )}

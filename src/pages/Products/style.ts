@@ -53,3 +53,11 @@ export const ProductPage__OpenOrCloseFilters = styled.div`
         color: #000;
     }
 `
+export const ProductCard__ProductsContainer = styled.section`
+    width: 100%;
+    height: 92%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+`

@@ -3,7 +3,7 @@
     "title": "nike snicker",
     "price": 100,
     "category": "sport",
-    "image_url": "#",
+    "image_url": "../../assets/snicker.jpeg",
     "inPromotion": null
   },
   {
