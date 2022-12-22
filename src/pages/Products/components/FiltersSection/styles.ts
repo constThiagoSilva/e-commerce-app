@@ -15,8 +15,6 @@ export const FiltersSection__Content = styled.div`
     width: 60%;
     height: 100%;
 
-    padding: 10px;
-
     display: flex;
     align-items: flex-start;
     flex-direction: column;
