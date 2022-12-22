@@ -22,7 +22,7 @@ export const FilterBox = ({ filter }: FilterBoxProps) => {
           <div data-testid="arrow-to-open-options">arrow down</div>
           <div>
             {filter.filters.map((filter) => (
-              <FilterOption data-testid="filters-options" />
+              <FilterOption data-testid="filters-options" filterTitle={filter.filter}/>
             ))}
           </div>
         </div>
