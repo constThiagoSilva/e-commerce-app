@@ -2,7 +2,12 @@ import { useState } from "react";
 import { FilterOption } from "./FilterOptions/FilterOption";
 import { Filter } from "./interface/Filter";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
-import { FilterBox__Container, FilterBox__Title, FilterBox__TitleContainer, FilterBox__FilterOptionsContainer } from "./styles";
+import {
+  FilterBox__Container,
+  FilterBox__Title,
+  FilterBox__TitleContainer,
+  FilterBox__FilterOptionsContainer,
+} from "./styles";
 
 interface FilterBoxProps {
   filter: Filter;
@@ -12,11 +17,11 @@ export const FilterBox = ({ filter }: FilterBoxProps) => {
   const [isFilterOptionsOpen, setIsFilterOptionsOpen] = useState(false);
 
   return (
-    <FilterBox__Container
-      onClick={() => setIsFilterOptionsOpen(!isFilterOptionsOpen)}
-      data-testid="component"
-    >
-      <FilterBox__TitleContainer>
+    <FilterBox__Container>
+      <FilterBox__TitleContainer
+        onClick={() => setIsFilterOptionsOpen(!isFilterOptionsOpen)}
+        data-testid="component"
+      >
         <FilterBox__Title>{filter.title}</FilterBox__Title>
         {isFilterOptionsOpen ? (
           <IoMdArrowDropup
