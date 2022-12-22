@@ -1,5 +1,6 @@
 import { HTMLAttributes, useMemo } from "react";
 import { FilterOption } from "../../../../components/Filter/FilterBox/FilterOptions/FilterOption";
+import {FiltersSection__Container} from './styles'
 
 export const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
   const FILTER_OPTIONS = useMemo(
@@ -18,7 +19,7 @@ export const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
   );
 
   return (
-    <div {...rest}>
+    <FiltersSection__Container {...rest}>
       <section>
         {FILTER_OPTIONS.map((option) => (
           <FilterOption
@@ -28,6 +29,6 @@ export const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
           />
         ))}
       </section>
-    </div>
+    </FiltersSection__Container>
   );
 };
