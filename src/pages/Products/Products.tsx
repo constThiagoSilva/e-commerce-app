@@ -3,6 +3,7 @@ import axios from "axios";
 import { Product } from "../../interfaces/Product";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { FiltersSection } from "./components/FiltersSection/FiltersSection";
+import {BsFilter} from 'react-icons/bs'
 import {
   ProductPage__Container,
   ProductPage__Header,
@@ -35,7 +36,7 @@ export const Products = () => {
             onClick={() => setIsFiltersSectionOpen(!isFiltersSectionOpen)}
           >
             <span>filtros</span>
-            <span>icon</span>
+            <BsFilter style={{fontSize: 25}}/>
           </ProductPage__OpenOrCloseFilters>
         </ProductPage__OpenOrCloseFiltersContainer>
       </ProductPage__Header>
