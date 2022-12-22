@@ -30,7 +30,7 @@ export const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
           <FilterBox
             key={option.title}
             filter={option}
-            data-testid="filter-options-component"
+            data-testid='filter-options-component'
           />
         ))}
       </FiltersSection__Content>

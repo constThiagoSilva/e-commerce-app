@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { HTMLAttributes, useState } from "react";
 import { FilterOption } from "./FilterOptions/FilterOption";
 import { Filter } from "./interface/Filter";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
@@ -9,15 +9,15 @@ import {
   FilterBox__FilterOptionsContainer,
 } from "./styles";
 
-interface FilterBoxProps {
+interface FilterBoxProps extends HTMLAttributes<HTMLDivElement>{
   filter: Filter;
 }
 
-export const FilterBox = ({ filter }: FilterBoxProps) => {
+export const FilterBox = ({ filter, ...rest }: FilterBoxProps) => {
   const [isFilterOptionsOpen, setIsFilterOptionsOpen] = useState(false);
 
   return (
-    <FilterBox__Container>
+    <FilterBox__Container {...rest}>
       <FilterBox__TitleContainer
         onClick={() => setIsFilterOptionsOpen(!isFilterOptionsOpen)}
         data-testid="component"
