@@ -40,10 +40,12 @@ describe("Filter Box Component", () => {
     expect(getByTestId("arrow-to-open-options")).toBeInTheDocument();
     expect(queryByTestId("arrow-to-close-options")).toBeFalsy();
   });
-  it("should have a filter options", () => {
-    const { getAllByTestId } = render(
+  it("should have a filter options", async () => {
+    const { getAllByTestId, getByTestId } = render(
       <FilterBox filter={makeMockFilterBoxProps()} />
     );
+
+    await userEvent.click(getByTestId("component"));
 
     getAllByTestId("filters-options").map((filterOption) =>
       expect(filterOption).toBeInTheDocument()
