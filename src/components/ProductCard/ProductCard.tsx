@@ -26,7 +26,7 @@ export const ProductCard = ({ product, ...rest }: ProductCardProps) => {
     <ProductCard__Container {...rest}>
       <ProductCard__ImageProductSection>
         <img
-          src={Img || product.image_url}
+          src={product.image_url}
           alt="any_alt"
           data-testid="product-image"
         />

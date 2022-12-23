@@ -10,7 +10,7 @@ import {
   ProductPage__OpenOrCloseFiltersContainer,
   ProductPage__OpenOrCloseFilters,
   ProductCard__ProductsContainer,
-} from "./style";
+} from "./styles";
 
 export const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
