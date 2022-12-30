@@ -50,7 +50,7 @@ export const Products = () => {
         ))}
       </ProductCard__ProductsContainer>
       {isFiltersSectionOpen && (
-        <FiltersSection data-testid="filters-section-component" />
+        <FiltersSection data-testid="filters-section-component" isOpen={isFiltersSectionOpen} onClose={() => setIsFiltersSectionOpen(false)}/>
       )}
     </ProductPage__Container>
   );

@@ -1,10 +1,16 @@
 import { HTMLAttributes, useMemo } from "react";
 import { FilterBox } from "../../../../components/Filter/FilterBox/FilterBox";
-import { FilterOption } from "../../../../components/Filter/FilterBox/FilterOptions/FilterOption";
 import {FiltersSection__Overlay, FiltersSection__Content} from './styles'
 import {Filter} from '../../../../components/Filter/FilterBox/interface/Filter'
 
-export const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
+interface FiltersSectionProps extends HTMLAttributes<HTMLDivElement>{
+  isOpen: boolean
+  onClose: () => void
+}
+
+export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps) => {
+  if (!isOpen) return null
+
   const FILTER_OPTIONS = useMemo<Filter[]>(
     () => [
       {
@@ -24,7 +30,7 @@ export const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
   );
 
   return (
-    <FiltersSection__Overlay {...rest}>
+    <FiltersSection__Overlay {...rest} onClick={onClose} >
       <FiltersSection__Content>
         {FILTER_OPTIONS.map((option) => (
           <FilterBox
@@ -34,6 +40,9 @@ export const FiltersSection = ({ ...rest }: HTMLAttributes<HTMLDivElement>) => {
           />
         ))}
       </FiltersSection__Content>
+      <div data-testid='close-section'>
+        X
+      </div>
     </FiltersSection__Overlay>
   );
 };
