@@ -37,7 +37,7 @@ describe("Product Card Component", () => {
     describe("In promotion", () => {
       it("should have a section have the percent of discount if product has in promotion", () => {
         const mockProduct: Product = {
-          id: 'any_id',
+          id: "any_id",
           title: "any_title",
           price: 100,
           category: "any_category",
@@ -55,7 +55,7 @@ describe("Product Card Component", () => {
       });
       it("should have a promotion price and normal price if product is in promotion", () => {
         const mockProduct: Product = {
-          id: 'any_id',
+          id: "any_id",
           title: "any_title",
           price: 100,
           category: "any_category",
