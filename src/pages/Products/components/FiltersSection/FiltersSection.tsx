@@ -30,7 +30,7 @@ export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps
   );
 
   return (
-    <FiltersSection__Overlay {...rest} onClick={onClose} >
+    <FiltersSection__Overlay {...rest}>
       <FiltersSection__Content>
         {FILTER_OPTIONS.map((option) => (
           <FilterBox
@@ -40,7 +40,7 @@ export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps
           />
         ))}
       </FiltersSection__Content>
-      <div data-testid='close-section'>
+      <div data-testid='close-section' onClick={onClose}>
         X
       </div>
     </FiltersSection__Overlay>
