@@ -6,6 +6,7 @@ export const makeMockProduct = (otherMockProduct?: Product): Product => {
   }
 
   return {
+    id: 'any_id',
     title: "any_title",
     price: 100,
     category: "any_category",

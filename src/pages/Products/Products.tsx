@@ -43,6 +43,7 @@ export const Products = () => {
       <ProductCard__ProductsContainer>
         {products.map((product) => (
           <ProductCard
+            key={product.id}
             product={product}
             data-testid="product-card-component"
           />

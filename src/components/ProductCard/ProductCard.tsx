@@ -20,8 +20,6 @@ interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ProductCard = ({ product, ...rest }: ProductCardProps) => {
-  console.log(product.image_url);
-
   return (
     <ProductCard__Container {...rest}>
       <ProductCard__ImageProductSection>

@@ -39,6 +39,7 @@ export const FilterBox = ({ filter, ...rest }: FilterBoxProps) => {
         <FilterBox__FilterOptionsContainer>
           {filter.filters.map((filter) => (
             <FilterOption
+              key={filter.filter}
               data-testid="filters-options"
               filterTitle={filter.filter}
             />
