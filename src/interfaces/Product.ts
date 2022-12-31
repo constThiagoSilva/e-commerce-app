@@ -8,4 +8,5 @@ export type Product = {
     price: number;
   } | null;
   image_url: string;
+  size: number;
 };
