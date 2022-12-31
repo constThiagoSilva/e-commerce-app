@@ -12,5 +12,6 @@ export const makeMockProduct = (otherMockProduct?: Product): Product => {
     category: "any_category",
     image_url: "any_url",
     inPromotion: null,
+    size: 10
   };
 };

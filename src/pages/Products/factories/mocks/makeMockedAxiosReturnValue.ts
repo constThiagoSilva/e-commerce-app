@@ -9,6 +9,7 @@ export const makeMockAxiosReturnedValue = (axios: jest.Mocked<AxiosStatic>) => {
         inPromotion: null,
         price: 100,
         title: "any_title",
+        size: 10
       },
       {
         category: "any_category",
@@ -16,6 +17,7 @@ export const makeMockAxiosReturnedValue = (axios: jest.Mocked<AxiosStatic>) => {
         inPromotion: null,
         price: 100,
         title: "any_title",
+        size: 20
       },
       {
         category: "any_category",
@@ -23,6 +25,7 @@ export const makeMockAxiosReturnedValue = (axios: jest.Mocked<AxiosStatic>) => {
         inPromotion: null,
         price: 100,
         title: "any_title",
+        size: 10
       },
       {
         category: "any_category",
@@ -30,6 +33,7 @@ export const makeMockAxiosReturnedValue = (axios: jest.Mocked<AxiosStatic>) => {
         inPromotion: null,
         price: 100,
         title: "any_title",
+        size: 30
       },
       {
         category: "any_category",
@@ -37,6 +41,7 @@ export const makeMockAxiosReturnedValue = (axios: jest.Mocked<AxiosStatic>) => {
         inPromotion: null,
         price: 100,
         title: "any_title",
+        size: 10
       },
     ],
   });
