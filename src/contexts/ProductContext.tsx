@@ -1,7 +1,7 @@
 import { createContext, ReactNode, SetStateAction, useState } from "react";
 import { Product } from "../interfaces/Product";
 
-interface IProductContext {
+export interface IProductContext {
   listOfCurrentProducts: Product[];
   setListOfCurrentProducts: React.Dispatch<SetStateAction<Product[]>>;
 }

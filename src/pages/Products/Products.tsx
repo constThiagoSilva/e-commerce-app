@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Product } from "../../interfaces/Product";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
@@ -11,16 +11,17 @@ import {
   ProductPage__OpenOrCloseFilters,
   ProductCard__ProductsContainer,
 } from "./styles";
+import { IProductContext, ProductContext } from "../../contexts/ProductContext";
 
 export const Products = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const {listOfCurrentProducts ,setListOfCurrentProducts} = useContext(ProductContext) as IProductContext
   const [isFiltersSectionOpen, setIsFiltersSectionOpen] = useState(false);
 
   useEffect(() => {
     const fetchAllProducts = async () => {
       const { data } = await axios.get("../../data/products.json");
 
-      setProducts(data);
+      setListOfCurrentProducts(data);
     };
 
     fetchAllProducts();
@@ -41,7 +42,7 @@ export const Products = () => {
         </ProductPage__OpenOrCloseFiltersContainer>
       </ProductPage__Header>
       <ProductCard__ProductsContainer>
-        {products.map((product) => (
+        {listOfCurrentProducts.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
