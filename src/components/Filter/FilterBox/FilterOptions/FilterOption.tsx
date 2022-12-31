@@ -16,7 +16,8 @@ export const FilterOption = ({
 }: FilterOptionProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation()
     setIsChecked(handleCheckFilter(isChecked))
 
     if (isChecked) {
@@ -25,7 +26,7 @@ export const FilterOption = ({
   }
 
   return (
-    <FilterOption__Container {...rest} onClick={() => handleClick()}>
+    <FilterOption__Container {...rest} onClick={(event) => handleClick(event)}>
       <FilterOption__CheckBox data-testid="checkbox-element">
         {isChecked ? <span data-testid="check"><AiOutlineCheck/></span> : <></>}
       </FilterOption__CheckBox>
