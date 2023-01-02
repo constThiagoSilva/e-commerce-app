@@ -4,7 +4,8 @@
     "price": 100,
     "category": "sport",
     "image_url": "../../assets/snicker.jpeg",
-    "inPromotion": null
+    "inPromotion": null,
+    "size": "30"
   },
   {
     "title": "adidas force",
@@ -13,7 +14,8 @@
     "image_url": "#",
     "inPromotion": {
       "discountInPercent": 20
-    }
+    },
+    "size": "20"
   },
   {
     "title": "nike mizuno",
@@ -22,14 +24,16 @@
     "image_url": "#",
     "inPromotion": {
       "discountInPercent": 20
-    }
+    },
+    "size": "40"
   },
   {
     "title": "miznuno aa snicker",
     "price": 100,
     "category": "casual",
     "image_url": "#",
-    "inPromotion": null
+    "inPromotion": null,
+    "size": "40"
   },
   {
     "title": "mizuno bbb snicker",
@@ -38,6 +42,7 @@
     "image_url": "#",
     "inPromotion": {
       "discountInPercent": 20
-    }
+    },
+    "size": "30"
   }
 ]
