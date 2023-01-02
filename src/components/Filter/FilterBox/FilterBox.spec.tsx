@@ -1,12 +1,14 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ProductProvider } from "../../../contexts/ProductContext";
 import { makeMockFilterBoxProps } from "./factories/makeMockFilterBoxProps";
 import { FilterBox } from "./FilterBox";
 
 describe("Filter Box Component", () => {
   it("should have a title passed by props", () => {
     const { getByText } = render(
-      <FilterBox filter={makeMockFilterBoxProps()} />
+      <FilterBox filter={makeMockFilterBoxProps()} />,
+      { wrapper: ProductProvider }
     );
 
     expect(getByText("any_title")).toBeInTheDocument();
@@ -16,13 +18,16 @@ describe("Filter Box Component", () => {
       title: "any_title",
       filters: [],
     };
-    const { getByTestId } = render(<FilterBox filter={mockFilterBoxProps} />);
+    const { getByTestId } = render(<FilterBox filter={mockFilterBoxProps} />, {
+      wrapper: ProductProvider,
+    });
 
     expect(getByTestId("arrow-to-open-options")).toBeInTheDocument();
   });
   it("should have a arrow icon to open filters options", async () => {
     const { getByTestId, queryByTestId } = render(
-      <FilterBox filter={makeMockFilterBoxProps()} />
+      <FilterBox filter={makeMockFilterBoxProps()} />,
+      { wrapper: ProductProvider }
     );
 
     await userEvent.click(getByTestId("component"));
@@ -32,7 +37,8 @@ describe("Filter Box Component", () => {
   });
   it("should have a close section filters options", async () => {
     const { getByTestId, queryByTestId } = render(
-      <FilterBox filter={makeMockFilterBoxProps()} />
+      <FilterBox filter={makeMockFilterBoxProps()} />,
+      { wrapper: ProductProvider }
     );
 
     await userEvent.dblClick(getByTestId("component"));
@@ -42,7 +48,8 @@ describe("Filter Box Component", () => {
   });
   it("should have a filter options", async () => {
     const { getAllByTestId, getByTestId } = render(
-      <FilterBox filter={makeMockFilterBoxProps()} />
+      <FilterBox filter={makeMockFilterBoxProps()} />,
+      { wrapper: ProductProvider }
     );
 
     await userEvent.click(getByTestId("component"));

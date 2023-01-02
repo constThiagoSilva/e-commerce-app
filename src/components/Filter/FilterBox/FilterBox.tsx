@@ -1,4 +1,4 @@
-import { HTMLAttributes, useState } from "react";
+import { HTMLAttributes, useContext, useState } from "react";
 import { FilterOption } from "./FilterOptions/FilterOption";
 import { Filter } from "./interface/Filter";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
@@ -8,18 +8,19 @@ import {
   FilterBox__TitleContainer,
   FilterBox__FilterOptionsContainer,
 } from "./styles";
+import { IProductContext, ProductContext } from "../../../contexts/ProductContext";
 
 interface FilterBoxProps extends HTMLAttributes<HTMLDivElement>{
   filter: Filter;
 }
 
 export const FilterBox = ({ filter, ...rest }: FilterBoxProps) => {
-  //const 
+  const {setFiltersSelected} = useContext(ProductContext) as IProductContext
   const [isFilterOptionsOpen, setIsFilterOptionsOpen] = useState(false);
 
-  // const getFilterOptionSelected = ({filterName, filterValue}: {filterName: string, filterValue: string}) => {
-
-  // }
+  const getFilterOptionSelected = ({filterName, filterValue}: {filterName: string, filterValue: string}) => {
+    setFiltersSelected((prev: any) => [...prev, {filterName, filterValue}])
+  }
 
   return (
     <FilterBox__Container {...rest}>
@@ -48,6 +49,7 @@ export const FilterBox = ({ filter, ...rest }: FilterBoxProps) => {
               data-testid="filters-options"
               filterValue={filterOption.filter}
               filterType={filter.title}
+              getFilterOptionSelected={({filterName, filterValue}) => getFilterOptionSelected({filterName, filterValue})}
             />
           ))}
         </FilterBox__FilterOptionsContainer>
