@@ -1,5 +1,6 @@
-export const makeMockFilterOptionsProps = () => {
+export const makeMockFilterOptionsProps = (): {filterType: string, filterValue: string} => {
   return {
-    filterTitle: "any_title",
+    filterType: 'any_type_title',
+    filterValue: "any_title",
   };
 };

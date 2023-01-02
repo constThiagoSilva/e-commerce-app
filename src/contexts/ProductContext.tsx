@@ -4,8 +4,8 @@ import { Product } from "../interfaces/Product";
 export interface IProductContext {
   listOfCurrentProducts: Product[];
   setListOfCurrentProducts: React.Dispatch<SetStateAction<Product[]>>;
-  filterListAccordingFilterProps: { filterName: string; filterValue: string }[];
-  setFilterListAccordingFilterProps: React.Dispatch<
+  filtersSelected: { filterName: string; filterValue: string }[];
+  setFiltersSelected: React.Dispatch<
     SetStateAction<{ filterName: string; filterValue: string }[]>
   >;
 }
@@ -16,7 +16,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [listOfCurrentProducts, setListOfCurrentProducts] = useState<Product[]>(
     []
   );
-  const [filterListAccordingFilterProps, setFilterListAccordingFilterProps] =
+  const [filtersSelected, setFiltersSelected] =
     useState<{ filterName: string; filterValue: string }[]>([]);
 
   return (
@@ -24,8 +24,8 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
       value={{
         listOfCurrentProducts,
         setListOfCurrentProducts,
-        filterListAccordingFilterProps,
-        setFilterListAccordingFilterProps,
+        filtersSelected,
+        setFiltersSelected
       }}
     >
       {children}

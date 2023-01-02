@@ -5,13 +5,15 @@ import {AiOutlineCheck} from 'react-icons/ai'
 import {FilterOption__Container,FilterOption__CheckBox} from './styles'
 
 interface FilterOptionProps extends HTMLAttributes<HTMLDivElement> {
-  filterTitle: string;
-  getFilterTitle?: (filterTitle: string) => void;
+  filterType: string;
+  filterValue: string;
+  getFilterOptionSelected?: ({filterName, filterValue}: {filterName: string, filterValue: string}) => void;
 }
 
 export const FilterOption = ({
-  filterTitle,
-  getFilterTitle,
+  filterType,
+  filterValue,
+  getFilterOptionSelected,
   ...rest
 }: FilterOptionProps) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -21,7 +23,7 @@ export const FilterOption = ({
     setIsChecked(handleCheckFilter(isChecked))
 
     if (isChecked) {
-      getFilterTitle?.(setFilterTitle(filterTitle))
+      getFilterOptionSelected?.({filterName: filterType, filterValue: filterValue})
     }
   }
 
@@ -30,7 +32,7 @@ export const FilterOption = ({
       <FilterOption__CheckBox data-testid="checkbox-element">
         {isChecked ? <span data-testid="check"><AiOutlineCheck/></span> : <></>}
       </FilterOption__CheckBox>
-      <span>{filterTitle}</span>
+      <span>{filterValue}</span>
     </FilterOption__Container>
   );
 };
