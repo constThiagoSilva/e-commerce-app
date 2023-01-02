@@ -14,7 +14,7 @@ interface FiltersSectionProps extends HTMLAttributes<HTMLDivElement>{
 export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps) => {
   if (!isOpen) return null
 
-  const {filtersSelected, setListOfCurrentProducts, listProducts} = useContext(ProductContext) as IProductContext
+  const {filtersSelected, setListOfCurrentProducts, listProducts, setFiltersSelected} = useContext(ProductContext) as IProductContext
 
   const FILTER_OPTIONS = useMemo<Filter[]>(
     () => [
@@ -41,8 +41,6 @@ export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps
       listProducts.forEach(product => {
         type FilterNameKey = keyof typeof product;
 
-        console.log(product[(filter.filterName.toLowerCase()) as FilterNameKey] === filter.filterValue, filter.filterValue)
-
         if (product[(filter.filterName.toLowerCase()) as FilterNameKey] === filter.filterValue) {
           newList.push(product)
 
@@ -51,11 +49,9 @@ export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps
 
         return
       })
-
-      console.log('ccccccc', newList)
-
     })
     setListOfCurrentProducts(newList)
+    setFiltersSelected([])
   }
 
   const handleClose = () => {

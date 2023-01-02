@@ -86,8 +86,6 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     fetchAllProducts();
   }, []);
 
-  console.log("aaaaaaaaaaaaa", listProducts);
-
   return (
     <ProductContext.Provider
       value={{
