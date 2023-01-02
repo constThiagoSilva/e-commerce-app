@@ -18,7 +18,7 @@ export const FilterOption = ({
   filterValue,
   ...rest
 }: FilterOptionProps) => {
-  const { getFilterOptionSelected } = useContext(
+  const { getFilterOptionSelected, removeUncheckOptionSelected } = useContext(
     ProductContext
   ) as IProductContext;
   const [isChecked, setIsChecked] = useState(false);
@@ -34,6 +34,11 @@ export const FilterOption = ({
 
   const handleUncheck = () => {
     setIsChecked(false);
+
+    removeUncheckOptionSelected({
+      filterName: filterType,
+      filterValue: filterValue,
+    });
   };
 
   return (

@@ -9,7 +9,7 @@ export interface IProductContext {
     SetStateAction<{ filterName: string; filterValue: string }[]>
   >;
   getFilterOptionSelected: ({filterName, filterValue}: {filterName: string, filterValue: string}) => void;
-  removeLastOptionSelected: () => void
+  removeUncheckOptionSelected: ({filterName, filterValue}: {filterName: string, filterValue: string}) => void
 }
 
 export const ProductContext = createContext<IProductContext | null>(null);
@@ -26,8 +26,17 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     const getFilterOptionSelected = ({filterName, filterValue}: {filterName: string, filterValue: string}) => {
       setFiltersSelected((prev: any) => [...prev, {filterName, filterValue}])
     }
-    const removeLastOptionSelected = () => {
-      const removedLastOptionSelected: { filterName: string; filterValue: string }[] = filtersSelected.splice(-1) || []
+    const removeUncheckOptionSelected = ({filterName, filterValue}: {filterName: string, filterValue: string}) => {
+      const removedLastOptionSelected = filtersSelected.filter(filter => {
+        if (filter.filterName === filterName && filter.filterValue === filterValue) {
+          return false
+        }
+
+        return true
+      })
+
+      console.log('aa', removedLastOptionSelected)
+
       setFiltersSelected(removedLastOptionSelected)
     }
 
@@ -39,7 +48,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         filtersSelected,
         setFiltersSelected,
         getFilterOptionSelected,
-        removeLastOptionSelected
+        removeUncheckOptionSelected
       }}
     >
       {children}
