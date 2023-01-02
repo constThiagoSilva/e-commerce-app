@@ -10,6 +10,7 @@ import { Product } from "../interfaces/Product";
 
 export interface IProductContext {
   listProducts: Product[];
+  setListProducts: React.Dispatch<SetStateAction<Product[]>>;
   listOfCurrentProducts: Product[];
   setListOfCurrentProducts: React.Dispatch<SetStateAction<Product[]>>;
   filtersSelected: { filterName: string; filterValue: string }[];
@@ -73,23 +74,11 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     setFiltersSelected(removedLastOptionSelected);
   };
 
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      const { data } = await axios.get("../../data/products.json");
-
-      console.log(data);
-
-      setListProducts(data);
-      setListOfCurrentProducts(data);
-    };
-
-    fetchAllProducts();
-  }, []);
-
   return (
     <ProductContext.Provider
       value={{
         listProducts,
+        setListProducts,
         listOfCurrentProducts,
         setListOfCurrentProducts,
         filtersSelected,
