@@ -2,6 +2,9 @@ import { HTMLAttributes, useMemo } from "react";
 import { FilterBox } from "../../../../components/Filter/FilterBox/FilterBox";
 import {FiltersSection__Overlay, FiltersSection__Content} from './styles'
 import {Filter} from '../../../../components/Filter/FilterBox/interface/Filter'
+import { useContext } from "react";
+import { IProductContext, ProductContext, ProductProvider } from "../../../../contexts/ProductContext";
+import { Product } from "../../../../interfaces/Product";
 
 interface FiltersSectionProps extends HTMLAttributes<HTMLDivElement>{
   isOpen: boolean
@@ -10,6 +13,8 @@ interface FiltersSectionProps extends HTMLAttributes<HTMLDivElement>{
 
 export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps) => {
   if (!isOpen) return null
+
+  const {filtersSelected, setListOfCurrentProducts,listOfCurrentProducts} = useContext(ProductContext) as IProductContext
 
   const FILTER_OPTIONS = useMemo<Filter[]>(
     () => [
@@ -29,6 +34,35 @@ export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps
     []
   );
 
+  const filterProducts = () => {
+    const newList: Product[] =  []
+
+    filtersSelected.forEach(filter => {
+      listOfCurrentProducts.forEach(product => {
+        type FilterNameKey = keyof typeof product;
+
+        console.log(product[(filter.filterName.toLowerCase()) as FilterNameKey] === filter.filterValue, filter.filterValue)
+
+        if (product[(filter.filterName.toLowerCase()) as FilterNameKey] === filter.filterValue) {
+          newList.push(product)
+
+          return
+        }
+
+        return
+      })
+
+      console.log('ccccccc', newList)
+
+    })
+    setListOfCurrentProducts(newList)
+  }
+
+  const handleClose = () => {
+    onClose()
+    filterProducts()
+  }
+
   return (
     <FiltersSection__Overlay {...rest}>
       <FiltersSection__Content>
@@ -40,7 +74,7 @@ export const FiltersSection = ({ isOpen, onClose ,...rest }: FiltersSectionProps
           />
         ))}
       </FiltersSection__Content>
-      <div data-testid='close-section' onClick={onClose}>
+      <div data-testid='close-section' onClick={handleClose}>
         X
       </div>
     </FiltersSection__Overlay>
