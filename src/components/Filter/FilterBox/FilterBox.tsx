@@ -15,12 +15,7 @@ interface FilterBoxProps extends HTMLAttributes<HTMLDivElement>{
 }
 
 export const FilterBox = ({ filter, ...rest }: FilterBoxProps) => {
-  const {setFiltersSelected} = useContext(ProductContext) as IProductContext
   const [isFilterOptionsOpen, setIsFilterOptionsOpen] = useState(false);
-
-  const getFilterOptionSelected = ({filterName, filterValue}: {filterName: string, filterValue: string}) => {
-    setFiltersSelected((prev: any) => [...prev, {filterName, filterValue}])
-  }
 
   return (
     <FilterBox__Container {...rest}>
@@ -49,7 +44,6 @@ export const FilterBox = ({ filter, ...rest }: FilterBoxProps) => {
               data-testid="filters-options"
               filterValue={filterOption.filter}
               filterType={filter.title}
-              getFilterOptionSelected={({filterName, filterValue}) => getFilterOptionSelected({filterName, filterValue})}
             />
           ))}
         </FilterBox__FilterOptionsContainer>
