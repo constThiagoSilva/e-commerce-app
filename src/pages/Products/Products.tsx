@@ -17,16 +17,6 @@ export const Products = () => {
   const {listOfCurrentProducts ,setListOfCurrentProducts} = useContext(ProductContext) as IProductContext
   const [isFiltersSectionOpen, setIsFiltersSectionOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      const { data } = await axios.get("../../data/products.json");
-
-      setListOfCurrentProducts(data);
-    };
-
-    fetchAllProducts();
-  }, []);
-
   return (
     <ProductPage__Container>
       <ProductPage__Header>
