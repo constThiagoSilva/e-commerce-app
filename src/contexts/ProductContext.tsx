@@ -19,6 +19,8 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [filtersSelected, setFiltersSelected] =
     useState<{ filterName: string; filterValue: string }[]>([]);
 
+    console.log(filtersSelected)
+
   return (
     <ProductContext.Provider
       value={{
