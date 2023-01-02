@@ -8,7 +8,8 @@ export interface IProductContext {
   setFiltersSelected: React.Dispatch<
     SetStateAction<{ filterName: string; filterValue: string }[]>
   >;
-  getFilterOptionSelected: ({filterName, filterValue}: {filterName: string, filterValue: string}) => void
+  getFilterOptionSelected: ({filterName, filterValue}: {filterName: string, filterValue: string}) => void;
+  removeLastOptionSelected: () => void
 }
 
 export const ProductContext = createContext<IProductContext | null>(null);
@@ -25,6 +26,10 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     const getFilterOptionSelected = ({filterName, filterValue}: {filterName: string, filterValue: string}) => {
       setFiltersSelected((prev: any) => [...prev, {filterName, filterValue}])
     }
+    const removeLastOptionSelected = () => {
+      const removedLastOptionSelected: { filterName: string; filterValue: string }[] = filtersSelected.splice(-1) || []
+      setFiltersSelected(removedLastOptionSelected)
+    }
 
   return (
     <ProductContext.Provider
@@ -33,7 +38,8 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         setListOfCurrentProducts,
         filtersSelected,
         setFiltersSelected,
-        getFilterOptionSelected
+        getFilterOptionSelected,
+        removeLastOptionSelected
       }}
     >
       {children}
